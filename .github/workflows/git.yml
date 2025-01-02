@@ -1,4 +1,4 @@
-name: Git tools & checks
+name: Fixup check
 
 on:
   pull_request:
@@ -14,24 +14,3 @@ jobs:
 
       - name: Block Fixup Commit Merge
         uses: 13rac1/block-fixup-merge-action@v2.0.0
-
-  rebase:
-    name: Rebase
-    runs-on: ubuntu-latest
-    if: >
-      github.event.issue.pull_request != '' &&
-      (
-        contains(github.event.comment.body, '/rebase') || 
-        contains(github.event.comment.body, '/autosquash')
-      )
-    steps:
-      - name: Checkout the latest code
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Automatic Rebase
-        uses: cirrus-actions/rebase@1.8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
