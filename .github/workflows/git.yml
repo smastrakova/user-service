@@ -1,4 +1,4 @@
-name: Git tools & checks
+name: Git checks
 
 on:
   pull_request:
